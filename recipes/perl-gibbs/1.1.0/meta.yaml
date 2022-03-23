@@ -1,0 +1,46 @@
+{% set name = "perl-gibbs" %}
+{% set version = "1.1.0" %}
+{% set sha256 = "7834831058c512f9b35c92ab86f7d8b1061572f569c0e23177b45217892e5a74" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://cpan.metacpan.org/authors/id/M/MH/MHSEABOLT/Gibbs-v1.1.tar.gz
+  sha256: {{ sha256 }}
+
+# If this is a new build for the same version, increment the build
+# number. If you do not include this key, it defaults to 0.
+build:
+  number: 0
+  run_exports:
+    weak:
+      - {{ name }} ={{ version }}
+
+requirements:
+  build:
+
+  # Run exports are used now
+  host:
+    - perl
+
+  run:
+    - perl
+
+test:
+  # Perl 'use' tests
+  imports:
+    - Gibbs
+
+  # You can also put a file called run_test.pl (or run_test.py) in the recipe
+  # that will be run at test time.
+
+about:
+  home: http://metacpan.org/pod/Gibbs
+  license: unknown
+  summary: ''
+
+# See
+# https://docs.conda.io/projects/conda-build for
+# more information about meta.yaml
